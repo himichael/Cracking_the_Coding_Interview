@@ -21,7 +21,34 @@
 		return dfs(0,True)
 		
 		
+		
+	# 递归+记忆化
+	def massage(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: int
+		"""
+		if not nums:
+			return 0
+		n = len(nums)
+		mem = [[-1]*2 for _ in xrange(n)]
+		def dfs(index,status):
+			if index==n:
+				return 0
+			if mem[index][status]>-1:
+				return mem[index][status]
+			a,b,c = 0,0,0
+			a = dfs(index+1,status)
+			if status==1:
+				b = dfs(index+1,0)
+			else:
+				c = dfs(index+1,1)+nums[index]
+			mem[index][status] = max(a,b,c)
+			return mem[index][status]
+		return dfs(0,0)
+		
 
+		
 	# 动态规划，一维数组
 	def massage(self, nums):
 		if not nums or len(nums)==0:
