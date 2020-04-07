@@ -13,3 +13,7 @@
 			for j in xrange(i):
 				matrix[i][j],matrix[j][i] = matrix[j][i],matrix[i][j]
 				
+				
+				
+	def rotate(self, matrix):
+		matrix[:] = zip(*reversed(matrix))
